@@ -1,17 +1,299 @@
-*, *::before, *::after { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #1a1a2e;
+/* Premium Warm Cream & Crimson Editorial Theme */
+:root[data-theme="dark"],
+:root[data-theme="light"] {
+    --bg-color: #FBF9F5;          /* Warm Ivory / Off-White background */
+    --card-bg: #FFFFFF;          /* Pure white card surfaces */
+    --text-primary: #1A191B;    /* Deep charcoal espresso for body text */
+    --text-secondary: #57534E;  /* Warm slate gray for subtitles/details */
+    --accent-red: #C81E1E;      /* Rich executive crimson red */
+    --accent-red-hover: #9B1C1C;
+    --border-color: #E7E5E4;    /* Delicate warm border lines */
+    --shadow-soft: 0 4px 20px -2px rgba(28, 25, 23, 0.06); /* Subtle depth shadow */
+    --navbar-bg: rgba(251, 249, 245, 0.92);
 }
 
-canvas {
-  display: block;
-  /* Pixel-perfect scaling — no blurry edges */
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding-top: 80px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.2rem;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: var(--navbar-bg);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.logo span, .highlight, .section-title span {
+    color: var(--accent-red);
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.nav-links a:hover {
+    color: var(--accent-red);
+}
+
+.theme-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Hero Section & Profile Avatar */
+.hero {
+    text-align: center;
+    padding: 4.5rem 0 2rem 0;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 4px 16px rgba(28, 25, 23, 0.12);
+}
+
+.badge {
+    display: inline-block;
+    background-color: #FEF2F2;
+    color: var(--accent-red);
+    padding: 0.35rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    border: 1px solid #FCA5A5;
+}
+
+.hero h1 {
+    font-size: 2.3rem;
+    margin-bottom: 0.4rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.hero h2 {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    color: var(--text-secondary);
+    margin-bottom: 1.8rem;
+    font-size: 0.98rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.4rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background-color: var(--accent-red);
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(200, 30, 30, 0.25);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-red-hover);
+}
+
+.btn-secondary {
+    background-color: var(--card-bg);
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red) !important;
+}
+
+/* Sections & Cards */
+.section {
+    padding: 2.2rem 0;
+}
+
+.section-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1.6rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+}
+
+.leadership-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.leadership-card h3 {
+    color: var(--accent-red);
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.leadership-card p, .project-card p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+}
+
+.project-card {
+    border-left: 4px solid var(--accent-red);
+}
+
+.project-card h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.1rem;
+}
+
+.tags {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.tags span {
+    font-size: 0.75rem;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.card-link {
+    color: var(--accent-red);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+.card-link:hover {
+    text-decoration: underline;
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+}
+
+.skill-item {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 0.9rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.88rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+/* Contact */
+.contact-card {
+    text-align: center;
+}
+
+.contact-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
 }
